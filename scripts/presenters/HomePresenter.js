@@ -5,7 +5,7 @@ class HomePresenter {
         this._view = new HomeView();
     }
 
-    show() {
+    tampilkan() {
         this._view.show();
     }
 }

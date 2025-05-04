@@ -13,7 +13,7 @@ class AddStoryPresenter {
         this._view.onSubmit = this._handleSubmit.bind(this);
     }
 
-    show() {
+    async tampilkan() {
         if (!this._model.isLoggedIn()) {
             window.location.hash = '#/login';
             return;

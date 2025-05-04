@@ -1,28 +1,28 @@
-import StoryModel from '../models/StoryModel.js';
-import LoginView from '../views/LoginView.js';
+import DataCerita from '../models/StoryModel.js';
+import TampilanLogin from '../views/LoginView.js';
 
-class LoginPresenter {
+class PengelolaLogin {
     constructor() {
-        this._model = new StoryModel();
-        this._view = new LoginView();
-        this._view.onSubmit = this._handleSubmit.bind(this);
+        this._data = new DataCerita();
+        this._tampilan = new TampilanLogin();
+        this._tampilan.saatSubmit = this._tanganiSubmit.bind(this);
     }
 
-    show() {
-        this._view.showForm();
+    tampilkan() {
+        this._tampilan.tampilkanForm();
     }
 
-    async _handleSubmit({ email, password }) {
+    async _tanganiSubmit({ email, password }) {
         try {
-            this._view.showLoading();
-            await this._model.login({ email, password });
+            this._tampilan.tampilkanLoading();
+            await this._data.login({ email, password });
             document.querySelectorAll('.overlay').forEach(el => el.remove());
             window.location.hash = '#/stories';
         } catch (error) {
             document.querySelectorAll('.overlay').forEach(el => el.remove());
-            this._view.showError(error.message);
+            this._tampilan.tampilkanError(error.message);
         }
     }
 }
 
-export default LoginPresenter; 
+export default PengelolaLogin; 

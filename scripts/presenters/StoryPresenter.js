@@ -1,13 +1,13 @@
 import StoryModel from '../models/StoryModel.js';
 import StoryView from '../views/StoryView.js';
 
-class StoryPresenter {
+class PengelolaStory {
     constructor() {
         this._model = new StoryModel();
         this._view = new StoryView();
     }
 
-    async show() {
+    async tampilkan() {
         try {
             this._view.showLoading();
             const stories = await this._model.getStories();
@@ -18,4 +18,4 @@ class StoryPresenter {
     }
 }
 
-export default StoryPresenter; 
+export default PengelolaStory;

@@ -1,6 +1,6 @@
 const API_BASE_URL = 'https://story-api.dicoding.dev/v1';
 
-class StoryModel {
+class DataCerita {
     constructor() {
         this._token = localStorage.getItem('token');
     }
@@ -105,4 +105,4 @@ class StoryModel {
 
 }
 
-export default StoryModel; 
+export default DataCerita; 

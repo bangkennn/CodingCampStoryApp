@@ -1,13 +1,13 @@
-import StoryPresenter from './presenters/StoryPresenter.js';
-import AddStoryPresenter from './presenters/AddStoryPresenter.js';
-import HomePresenter from './presenters/HomePresenter.js';
-import LoginPresenter from './presenters/LoginPresenter.js';
-import RegisterPresenter from './presenters/RegisterPresenter.js';
-import StoryModel from './models/StoryModel.js';
+import PengelolaStory from './presenters/StoryPresenter.js';
+import PengelolaTambahCerita from './presenters/AddStoryPresenter.js';
+import PengelolaHome from './presenters/HomePresenter.js';
+import PengelolaLogin from './presenters/LoginPresenter.js';
+import PengelolaRegister from './presenters/RegisterPresenter.js';
+import DataCerita from './models/StoryModel.js';
 
 class App {
     constructor() {
-        this._model = new StoryModel();
+        this._data = new DataCerita();
         this._setupNavigation();
         this._setupRouting();
     }
@@ -37,14 +37,14 @@ class App {
             <li><a href="#/home">Home</a></li>
             <li><a href="#/stories">Stories</a></li>
             <li><a href="#/add">Add Story</a></li>
-            ${this._model.isLoggedIn() ? '<li><a href="#/logout" id="logoutLink">Logout</a></li>' : '<li><a href="#/login">Login</a></li><li><a href="#/register">Register</a></li>'}
+            ${this._data.isLoggedIn() ? '<li><a href="#/logout" id="logoutLink">Logout</a></li>' : '<li><a href="#/login">Login</a></li><li><a href="#/register">Register</a></li>'}
         `;
         // Logout event
         const logoutLink = document.getElementById('logoutLink');
         if (logoutLink) {
             logoutLink.addEventListener('click', (e) => {
                 e.preventDefault();
-                this._model.logout();
+                this._data.logout();
                 window.location.hash = '#/login';
                 this._renderNavLinks();
             });
@@ -54,27 +54,27 @@ class App {
     _setupRouting() {
         const routes = {
             '/home': () => {
-                const homePresenter = new HomePresenter();
-                homePresenter.show();
+                const homePresenter = new PengelolaHome();
+                homePresenter.tampilkan();
             },
             '/stories': () => {
-                const storyPresenter = new StoryPresenter();
-                storyPresenter.show();
+                const storyPresenter = new PengelolaStory();
+                storyPresenter.tampilkan();
             },
             '/add': () => {
-                const addStoryPresenter = new AddStoryPresenter();
-                addStoryPresenter.show();
+                const addStoryPresenter = new PengelolaTambahCerita();
+                addStoryPresenter.tampilkan();
             },
             '/login': () => {
-                const loginPresenter = new LoginPresenter();
-                loginPresenter.show();
+                const loginPresenter = new PengelolaLogin();
+                loginPresenter.tampilkan();
             },
             '/register': () => {
-                const registerPresenter = new RegisterPresenter();
-                registerPresenter.show();
+                const registerPresenter = new PengelolaRegister();
+                registerPresenter.tampilkan();
             },
             '/logout': () => {
-                this._model.logout();
+                this._data.logout();
                 this._renderNavLinks();
                 window.location.hash = '#/login';
             }

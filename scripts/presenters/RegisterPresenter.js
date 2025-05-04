@@ -8,7 +8,7 @@ class RegisterPresenter {
         this._view.onSubmit = this._handleSubmit.bind(this);
     }
 
-    show() {
+    tampilkan() {
         this._view.showForm();
     }
 

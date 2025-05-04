@@ -1,9 +1,9 @@
-class LoginView {
+class TampilanLogin {
     constructor() {
         this._content = document.getElementById('content');
     }
 
-    showForm() {
+    tampilkanForm() {
         this._content.innerHTML = `
             <div class="form-container">
                 <h2>Login</h2>
@@ -18,33 +18,33 @@ class LoginView {
                     </div>
                     <button type="submit">Login</button>
                 </form>
-                <p>Belum punya akun? <a href="#/register">Register</a></p>
+                <p>Belum punya akun? <a href="#/register">Daftar Akun Sekarang!</a></p>
             </div>
         `;
-        this._setupEventListeners();
+        this._pasangEventListener();
     }
 
-    _setupEventListeners() {
+    _pasangEventListener() {
         const form = document.getElementById('loginForm');
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            if (this.onSubmit) {
-                this.onSubmit({ email, password });
+            if (this.saatSubmit) {
+                this.saatSubmit({ email, password });
             }
         });
     }
 
-    showError(message) {
+    tampilkanError(pesan) {
         this._content.innerHTML += `
             <div class="error-message">
-                <p>${message}</p>
+                <p>${pesan}</p>
             </div>
         `;
     }
 
-    showLoading() {
+    tampilkanLoading() {
         // Hapus semua overlay jika ada
         document.querySelectorAll('.overlay').forEach(el => el.remove());
         const popup = document.createElement('div');
@@ -60,4 +60,4 @@ class LoginView {
     }
 }
 
-export default LoginView; 
+export default TampilanLogin; 
